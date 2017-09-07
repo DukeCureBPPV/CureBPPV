@@ -22,3 +22,5 @@
 *.RTF	 diff=astextplain
 
 *.obj  diff=astextplain
+
+*.pbxproj -text
