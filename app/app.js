@@ -1,9 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import {
   StyleSheet,
-  View,
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import VideoPage from './video-page';
+import * as TreatmentPages from './treatment-pages';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,10 +25,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () => (
-  <View style={styles.container}>
-    <VideoPage />
-  </View>
-);
+const App = StackNavigator({
+  Home: { screen: VideoPage },
+  TreatmentStepOne: { screen: TreatmentPages.TreatmentStepOnePage },
+  TreatmentStepTwo: { screen: TreatmentPages.TreatmentStepTwoPage },
+  TreatmentStepThree: { screen: TreatmentPages.TreatmentStepThreePage },
+  TreatmentEnd: { screen: TreatmentPages.TreatmentEndPage },
+});
 
 export default App;
