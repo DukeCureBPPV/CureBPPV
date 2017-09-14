@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */; };
+		6E712C061F676331001D01A8 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E712C051F676331001D01A8 /* DeviceMotion.m */; };
+		6E712C0A1F676755001D01A8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E712C091F676755001D01A8 /* CoreMotion.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6E4F6EE11F649F5300F5CD2B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6E4F6EE31F649F5300F5CD2B /* libRCTDeviceMotion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTDeviceMotion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4F6EE61F649F5300F5CD2B /* Accelerometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+		6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
+		6E712BF61F67612A001D01A8 /* DeviceMotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceMotion.h; sourceTree = "<group>"; };
+		6E712C051F676331001D01A8 /* DeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMotion.m; sourceTree = "<group>"; };
+		6E712C091F676755001D01A8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E4F6EE01F649F5300F5CD2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E712C0A1F676755001D01A8 /* CoreMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E4F6EDA1F649F5300F5CD2B = {
+			isa = PBXGroup;
+			children = (
+				6E4F6EE51F649F5300F5CD2B /* RCTDeviceMotion */,
+				6E4F6EE41F649F5300F5CD2B /* Products */,
+				6E712C081F676755001D01A8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6E4F6EE41F649F5300F5CD2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E4F6EE31F649F5300F5CD2B /* libRCTDeviceMotion.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E4F6EE51F649F5300F5CD2B /* RCTDeviceMotion */ = {
+			isa = PBXGroup;
+			children = (
+				6E4F6EE61F649F5300F5CD2B /* Accelerometer.h */,
+				6E712BF61F67612A001D01A8 /* DeviceMotion.h */,
+				6E712C051F676331001D01A8 /* DeviceMotion.m */,
+				6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */,
+			);
+			path = RCTDeviceMotion;
+			sourceTree = "<group>";
+		};
+		6E712C081F676755001D01A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E712C091F676755001D01A8 /* CoreMotion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E4F6EE21F649F5300F5CD2B /* RCTDeviceMotion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E4F6EEC1F649F5300F5CD2B /* Build configuration list for PBXNativeTarget "RCTDeviceMotion" */;
+			buildPhases = (
+				6E4F6EDF1F649F5300F5CD2B /* Sources */,
+				6E4F6EE01F649F5300F5CD2B /* Frameworks */,
+				6E4F6EE11F649F5300F5CD2B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCTDeviceMotion;
+			productName = RCTDeviceMotion;
+			productReference = 6E4F6EE31F649F5300F5CD2B /* libRCTDeviceMotion.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E4F6EDB1F649F5300F5CD2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Keping Wang";
+				TargetAttributes = {
+					6E4F6EE21F649F5300F5CD2B = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = C97LVHA7R3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 6E4F6EDE1F649F5300F5CD2B /* Build configuration list for PBXProject "RCTDeviceMotion" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6E4F6EDA1F649F5300F5CD2B;
+			productRefGroup = 6E4F6EE41F649F5300F5CD2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E4F6EE21F649F5300F5CD2B /* RCTDeviceMotion */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E4F6EDF1F649F5300F5CD2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */,
+				6E712C061F676331001D01A8 /* DeviceMotion.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6E4F6EEA1F649F5300F5CD2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6E4F6EEB1F649F5300F5CD2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E4F6EED1F649F5300F5CD2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = C97LVHA7R3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6E4F6EEE1F649F5300F5CD2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = C97LVHA7R3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E4F6EDE1F649F5300F5CD2B /* Build configuration list for PBXProject "RCTDeviceMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E4F6EEA1F649F5300F5CD2B /* Debug */,
+				6E4F6EEB1F649F5300F5CD2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E4F6EEC1F649F5300F5CD2B /* Build configuration list for PBXNativeTarget "RCTDeviceMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E4F6EED1F649F5300F5CD2B /* Debug */,
+				6E4F6EEE1F649F5300F5CD2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E4F6EDB1F649F5300F5CD2B /* Project object */;
+}

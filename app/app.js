@@ -6,6 +6,7 @@ import { StackNavigator } from 'react-navigation';
 import VideoPage from './video-page';
 import * as TreatmentPages from './treatment-pages';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
