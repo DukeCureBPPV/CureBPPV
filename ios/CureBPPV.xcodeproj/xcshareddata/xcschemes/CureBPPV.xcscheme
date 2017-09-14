@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6E4F6EE21F649F5300F5CD2B"
+               BuildableName = "libRCTDeviceMotion.a"
+               BlueprintName = "RCTDeviceMotion"
+               ReferencedContainer = "container:../react-native-device-motion/ios/RCTDeviceMotion/RCTDeviceMotion.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "CureBPPV.app"
                BlueprintName = "CureBPPV"
