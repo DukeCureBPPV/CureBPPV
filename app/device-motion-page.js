@@ -86,7 +86,7 @@ class DeviceMotionPage extends Component {
         >
           <Svg width="100" height="100">
             <Polygon
-              points="50,5 55,20 45,20"
+              points="95,50 80,45 80,55"
               fill="#888"
             />
           </Svg>
