@@ -40,10 +40,9 @@ RCT_EXPORT_METHOD(startUpdates) {
     if (!self->motion.isDeviceMotionAvailable) {
         return;
     }
-    self->motion.showsDeviceMovementDisplay = true;
+    // self->motion.showsDeviceMovementDisplay = true;
     
-    [self->motion startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue]
-                                      withHandler:^(CMDeviceMotion *data, NSError *error)
+    [self->motion startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXMagneticNorthZVertical toQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *data, NSError *error)
      {
          [self
           sendEventWithName:@"Rotation"
