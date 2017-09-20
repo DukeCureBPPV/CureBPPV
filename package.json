@@ -1,5 +1,5 @@
 {
-  "name": "CureBPPV",
+  "name": "cure-bppv",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.1",
+    "react-native-progress": "^3.4.0",
     "react-native-svg": "^5.4.1",
     "react-native-video": "^2.0.0",
     "react-navigation": "^1.0.0-beta.11"

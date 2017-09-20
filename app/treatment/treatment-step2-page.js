@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
-class TreatmentStepTwoPage extends React.Component {
-  static navigationOptions = {
-    title: 'Step Two',
-    headerBackTitle: null,
-    headerLeft: null,
-  };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});
 
-  resetNavigation = (targetRoute) => {
+class TreatmentStepTwoPage extends React.Component {
+  resetNavigation(targetRoute) {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -17,25 +19,16 @@ class TreatmentStepTwoPage extends React.Component {
       ],
     });
     this.props.navigation.dispatch(resetAction);
-  };
-
-  componentDidMount() {
-    setTimeout(
-      () => {
-        this.resetNavigation('TreatmentStepThree'); },
-      5000
-    );
   }
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>This is step two.</Text>
         <Button
           title="Go Back Home"
           color="#2c4c91"
-          onPress={() => {
-            this.resetNavigation('Home'); }}
+          onPress={() => { this.resetNavigation('Home'); }}
         />
       </View>
     );

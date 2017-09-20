@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */; };
-		6E712C061F676331001D01A8 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E712C051F676331001D01A8 /* DeviceMotion.m */; };
 		6E712C0A1F676755001D01A8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E712C091F676755001D01A8 /* CoreMotion.framework */; };
+		9DD1D56E1F6F6E3F00ABD793 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E712C051F676331001D01A8 /* DeviceMotion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,7 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */,
-				6E712C061F676331001D01A8 /* DeviceMotion.m in Sources */,
+				9DD1D56E1F6F6E3F00ABD793 /* DeviceMotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

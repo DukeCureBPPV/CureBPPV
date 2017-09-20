@@ -1,37 +1,32 @@
-// import React from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import VideoPage from './video-page';
-import * as TreatmentPages from './treatment-pages';
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+import TreatmentStepOnePage from './treatment/treatment-step1-page';
+import TreatmentStepTwoPage from './treatment/treatment-step2-page';
+import TreatmentStepThreePage from './treatment/treatment-step3-page';
+import TreatmentEndPage from './treatment/treatment-end-page';
 
 const App = StackNavigator({
-  Home: { screen: VideoPage },
-  TreatmentStepOne: { screen: TreatmentPages.TreatmentStepOnePage },
-  TreatmentStepTwo: { screen: TreatmentPages.TreatmentStepTwoPage },
-  TreatmentStepThree: { screen: TreatmentPages.TreatmentStepThreePage },
-  TreatmentEnd: { screen: TreatmentPages.TreatmentEndPage },
+  Home: {
+    screen: VideoPage,
+  },
+  TreatmentStepOne: {
+    screen: TreatmentStepOnePage,
+  },
+  TreatmentStepTwo: {
+    screen: TreatmentStepTwoPage,
+  },
+  TreatmentStepThree: {
+    screen: TreatmentStepThreePage,
+  },
+  TreatmentEnd: {
+    screen: TreatmentEndPage,
+  },
+}, {
+  headerMode: 'none',
+  initialRouteName: 'Home',
+  navigationOptions: {
+    gesturesEnabled: false,
+  },
 });
 
 export default App;

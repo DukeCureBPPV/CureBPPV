@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
-class TreatmentEndPage extends React.Component {
-  static navigationOptions = {
-    title: 'You\'ve finished!',
-    headerBackTitle: null,
-    headerLeft: null,
-  };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});
 
-  resetNavigation = (targetRoute) => {
+class TreatmentEndPage extends React.Component {
+  resetNavigation(targetRoute) {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -17,16 +19,15 @@ class TreatmentEndPage extends React.Component {
       ],
     });
     this.props.navigation.dispatch(resetAction);
-  };
+  }
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Button
           title="Go Back Home"
           color="#2c4c91"
-          onPress={() => {
-            this.resetNavigation('Home'); }}
+          onPress={() => { this.resetNavigation('Home'); }}
         />
       </View>
     );
