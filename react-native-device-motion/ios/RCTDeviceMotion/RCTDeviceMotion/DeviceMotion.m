@@ -51,6 +51,9 @@ RCT_EXPORT_METHOD(startUpdates) {
                  @"y": [NSNumber numberWithDouble:data.attitude.quaternion.y],
                  @"z": [NSNumber numberWithDouble:data.attitude.quaternion.z],
                  @"w": [NSNumber numberWithDouble:data.attitude.quaternion.w],
+                 @"roll": [NSNumber numberWithDouble:data.attitude.roll],
+                 @"pitch": [NSNumber numberWithDouble:data.attitude.pitch],
+                 @"yaw": [NSNumber numberWithDouble:data.attitude.yaw],
                  @"timestamp": [NSNumber numberWithDouble:data.timestamp]
                  }
           ];
