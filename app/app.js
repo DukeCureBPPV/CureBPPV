@@ -1,8 +1,8 @@
 import { StackNavigator } from 'react-navigation';
 import VideoPage from './video-page';
-import TreatmentStepOnePage from './treatment/treatment-step1-page';
-import TreatmentStepTwoPage from './treatment/treatment-step2-page';
-import TreatmentStepThreePage from './treatment/treatment-step3-page';
+import TreatmentStepOne from './treatment/treatment-step-one';
+import TreatmentStepTwo from './treatment/treatment-step-two';
+import TreatmentStepThree from './treatment/treatment-step-three';
 import TreatmentEndPage from './treatment/treatment-end-page';
 
 const App = StackNavigator({
@@ -10,13 +10,13 @@ const App = StackNavigator({
     screen: VideoPage,
   },
   TreatmentStepOne: {
-    screen: TreatmentStepOnePage,
+    screen: TreatmentStepOne,
   },
   TreatmentStepTwo: {
-    screen: TreatmentStepTwoPage,
+    screen: TreatmentStepTwo,
   },
   TreatmentStepThree: {
-    screen: TreatmentStepThreePage,
+    screen: TreatmentStepThree,
   },
   TreatmentEnd: {
     screen: TreatmentEndPage,
