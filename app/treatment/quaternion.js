@@ -1,4 +1,6 @@
 /* eslint-disable no-mixed-operators */
+import RotationMatrix from './rotation-matrix';
+
 
 /**
  * Quaternion is a mathematical way for represnting orientations and rotations,
@@ -21,16 +23,18 @@
 class Quaternion {
   /**
    * A quaternion of (w + x*i + y*j + z*k).
+   * Automatically converts to a unit quaternion.
    * @param {number} w 
    * @param {number} x 
    * @param {number} y 
    * @param {number} z 
    */
   constructor(w, x, y, z) {
-    this.w = w;
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    const norm = Math.sqrt(w * w + x * x + y * y + z * z);
+    this.w = w / norm;
+    this.x = x / norm;
+    this.y = y / norm;
+    this.z = z / norm;
   }
 
   /**
@@ -66,32 +70,69 @@ class Quaternion {
     return new Quaternion(this.w, -this.x, -this.y, -this.z);
   }
 
+  innerProduct(other) {
+    const { w, x, y, z } = this;
+    const o = other;
+    return w * o.w + x * o.x + y * o.y + z * o.z;
+  }
+
+  distTo(other) {
+    const innerProduct = this.innerProduct(other);
+    return 1 - innerProduct * innerProduct;
+  }
+
   /**
-   * Returns the equivalent eulerian angle representation of { pitch, roll, yaw }.
-   * Assume that the eulerian angles use right hand coordinates,
-   * right hand rotation, and ZYX order.
-   * @returns {{pitch: number, roll: number, yaw: number}}}
+   * @returns {RotationMatrix}
+   */
+  toRotationMatrix() {
+    const { w, x, y, z } = this;
+    const m11 = 1 - 2 * y * y - 2 * z * z;
+    const m12 = 2 * x * y - 2 * z * w;
+    const m13 = 2 * x * z + 2 * y * w;
+    const m21 = 2 * x * y + 2 * z * w;
+    const m22 = 1 - 2 * x * x - 2 * z * z;
+    const m23 = 2 * y * z - 2 * x * w;
+    const m31 = 2 * x * z - 2 * y * w;
+    const m32 = 2 * y * z + 2 * x * w;
+    const m33 = 1 - 2 * x * x - 2 * y * y;
+    return new RotationMatrix(m11, m12, m13, m21, m22, m23, m31, m32, m33);
+  }
+
+
+  /**
+   * Converts to eulerian angles with the following standard:
+   * http://www.euclideanspace.com/maths/standards/index.htm
+   * 
+   * Except that the output of x, y, z axes is {pitch, roll, yaw}.
+   * @returns {{pitch: number, roll: number, yaw: number}}
    */
   toEulerianAngle() {
     const { w, x, y, z } = this;
 
-    // returns {pitch, roll, yaw} in radius
-    const t0 = 2.0 * ((w * x) + (y * z));
-    const t1 = 1.0 - (2.0 * ((x * x) + (y * y)));
-    const pitch = Math.atan2(t0, t1); // X pitch
-
-    let t2 = 2.0 * ((w * y) - (z * x));
-    if (t2 > 1) {
-      t2 = 1;
+    let heading; // y axis
+    let attitude; // z axis
+    let bank; // x axis
+    const test = x * y + z * w;
+    if (test > 0.499) { // singularity at north pole
+      heading = 2 * Math.atan2(x, w);
+      attitude = Math.PI / 2;
+      bank = 0;
+    } else if (test < -0.499) { // singularity at south pole
+      heading = -2 * Math.atan2(x, w);
+      attitude = -Math.PI / 2;
+      bank = 0;
+    } else {
+      const sqx = x * x;
+      const sqy = y * y;
+      const sqz = z * z;
+      heading = Math.atan2(2 * y * w - 2 * x * z, 1 - 2 * sqy - 2 * sqz);
+      attitude = Math.asin(2 * test);
+      bank = Math.atan2(2 * x * w - 2 * y * z, 1 - 2 * sqx - 2 * sqz);
     }
-    if (t2 < -1) {
-      t2 = -1;
-    }
-    const roll = Math.asin(t2); // Y roll
 
-    const t3 = 2.0 * ((w * z) + (x * y));
-    const t4 = 1.0 - (2.0 * ((y * y) + (z * z)));
-    const yaw = Math.atan2(t3, t4); // Z yaw
+    const pitch = bank;
+    const roll = heading;
+    const yaw = attitude;
 
     return { pitch, roll, yaw };
   }

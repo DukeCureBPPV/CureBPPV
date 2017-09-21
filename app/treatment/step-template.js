@@ -12,12 +12,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const TARGET_ROLL = 1;
-const TARGET_PITCH = 1;
-const TARGET_YAW = 1;
-const TOTAL_TIME = 30;
-const ALLOWED_DIST = 2;
-
 const rotationStyle = ({ rotateX, rotateY, rotateZ }) => ({
   width: 100,
   height: 100,
@@ -26,25 +20,20 @@ const rotationStyle = ({ rotateX, rotateY, rotateZ }) => ({
   shadowOpacity: 0.2,
   transform: [
     { perspective: 1000 },
-    { rotateZ: `${rotateZ}rad` },
     { rotateY: `${rotateY}rad` },
+    { rotateZ: `${rotateZ}rad` },
     { rotateX: `${rotateX}rad` },
   ],
 });
 
-function computeL2Distance(roll, pitch, yaw) {
-  return Math.min((2 * Math.PI) - Math.abs(roll - TARGET_ROLL), Math.abs(roll - TARGET_ROLL))
-    + Math.min((2 * Math.PI) - Math.abs(pitch - TARGET_PITCH), Math.abs(pitch - TARGET_PITCH))
-    + Math.min((2 * Math.PI) - Math.abs(yaw - TARGET_YAW), Math.abs(yaw - TARGET_YAW));
-}
-
-class TreatmentStepOnePage extends React.Component {
+class StepTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       rotateX: 0,
       rotateY: 0,
       rotateZ: 0,
+      distanceToTarget: 0,
       progress: 0,
       timestamp: null,
     };
@@ -58,21 +47,27 @@ class TreatmentStepOnePage extends React.Component {
       'Rotation',
       ({ w, x, y, z, timestamp }) => {
         const q = new Quaternion(w, x, y, z);
-        const { pitch, roll, yaw } = q.inv().toEulerianAngle();
-        const dist = computeL2Distance(roll, pitch, yaw);
+        const q0 = this.props.targetQuaternion;
+        const T = q.toRotationMatrix();
+        const T0 = q0.toRotationMatrix();
+        const { pitch, roll, yaw } = (T.T().times(T0).times(T))
+          .toQuaternion()
+          .times(q.inv())
+          .toEulerianAngle();
+        const rotateX = -pitch;
+        const rotateY = roll;
+        const rotateZ = -yaw;
+        const distanceToTarget = q.distTo(q0);
         let progress = this.state.progress;
-        if (this.state.timestamp !== null && dist < ALLOWED_DIST) {
-          progress += (timestamp - this.state.timestamp) / TOTAL_TIME;
+        if (this.state.timestamp !== null
+          && distanceToTarget < this.props.allowedDistance) {
+          progress += (timestamp - this.state.timestamp) / this.props.totalTime;
         }
         if (progress > 1) {
-          this.navigate('TreatmentStepTwo');
+          this.navigate(this.props.nextPageName);
         }
         this.setState({
-          timestamp,
-          progress,
-          rotateX: -(pitch - TARGET_PITCH),
-          rotateY: (roll - TARGET_ROLL),
-          rotateZ: -(yaw - TARGET_YAW),
+          timestamp, progress, rotateX, rotateY, rotateZ, distanceToTarget,
         });
       },
     );
@@ -86,7 +81,8 @@ class TreatmentStepOnePage extends React.Component {
   }
 
   render() {
-    const { rotateX, rotateY, rotateZ } = this.state;
+    const { stepNumberText } = this.props;
+    const { rotateX, rotateY, rotateZ, distanceToTarget } = this.state;
     return (
       <View style={styles.container}>
         <Text>
@@ -98,15 +94,16 @@ class TreatmentStepOnePage extends React.Component {
             <Polygon points="50,5 55,20 45,20" fill="#888" />
           </Svg>
         </View>
+        <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
         <ProgressBar width={200} height={30} progress={this.state.progress} />
         <Button
           title="Go Back Home"
           onPress={() => this.navigate('Home')}
         />
-        <Text>step 1 / 3</Text>
+        <Text>{stepNumberText}</Text>
       </View>
     );
   }
 }
 
-export default TreatmentStepOnePage;
+export default StepTemplate;
