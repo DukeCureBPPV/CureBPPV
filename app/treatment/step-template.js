@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, NativeModules, NativeEventEmitter } from 'react-native';
 import Svg, { Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
+import Sound from 'react-native-sound';
 import Quaternion from './quaternion';
 
 const styles = StyleSheet.create({
@@ -36,8 +37,10 @@ class StepTemplate extends React.Component {
       distanceToTarget: 0,
       progress: 0,
       timestamp: null,
+      lastTenSeconds: false,
     };
     this.emitter = null;
+    this.tenSecondsSound = null;
   }
 
   componentDidMount() {
@@ -62,6 +65,16 @@ class StepTemplate extends React.Component {
         if (this.state.timestamp !== null
           && distanceToTarget < this.props.allowedDistance) {
           progress += (timestamp - this.state.timestamp) / this.props.totalTime;
+          if ((1 - progress) * this.props.totalTime < 10 && !this.state.lastTenSeconds) {
+            this.setState({ lastTenSeconds: true });
+            this.tenSecondsSound.play((success) => {
+              if (success) {
+                console.log('Successfully play sound.');
+              } else {
+                console.log('Failed to play sound.');
+              }
+            });
+          }
         }
         if (progress > 1) {
           this.navigate(this.props.nextPageName);
@@ -72,6 +85,11 @@ class StepTemplate extends React.Component {
       },
     );
     DeviceMotion.startUpdates();
+    this.tenSecondsSound = new Sound('ten_seconds.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('Failed to create sound file');
+      }
+    });
   }
 
   navigate(targetRoute) {
