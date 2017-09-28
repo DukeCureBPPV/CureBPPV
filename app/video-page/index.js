@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Button, Text, View } from 'react-native';
+import { StyleSheet, Button, Text, View, Linking } from 'react-native';
 import Video from 'react-native-video';
 import { NavigationActions } from 'react-navigation';
 import sampleVideo from '../../assets/video/sample.mp4';
@@ -55,6 +55,13 @@ class VideoPage extends React.Component {
             title="right"
             color="#2c4c91"
             onPress={() => { this.resetNavigation('TreatmentStepOne'); }}
+          />
+        </View>
+        <View>
+          <Button
+            title="Survey"
+            color="#2c4c91"
+            onPress={() => { Linking.openURL('https://redcap.duke.edu/redcap/surveys/?s=YDW8TRLKPJ'); }}
           />
         </View>
       </View>
