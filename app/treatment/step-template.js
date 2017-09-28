@@ -67,13 +67,7 @@ class StepTemplate extends React.Component {
           progress += (timestamp - this.state.timestamp) / this.props.totalTime;
           if ((1 - progress) * this.props.totalTime < 10 && !this.state.lastTenSeconds) {
             this.setState({ lastTenSeconds: true });
-            this.tenSecondsSound.play((success) => {
-              if (success) {
-                console.log('Successfully play sound.');
-              } else {
-                console.log('Failed to play sound.');
-              }
-            });
+            this.tenSecondsSound.play();
           }
         }
         if (progress > 1) {
@@ -85,11 +79,7 @@ class StepTemplate extends React.Component {
       },
     );
     DeviceMotion.startUpdates();
-    this.tenSecondsSound = new Sound('ten_seconds.mp3', Sound.MAIN_BUNDLE, (error) => {
-      if (error) {
-        console.log('Failed to create sound file');
-      }
-    });
+    this.tenSecondsSound = new Sound('ten_seconds.mp3', Sound.MAIN_BUNDLE);
   }
 
   navigate(targetRoute) {
