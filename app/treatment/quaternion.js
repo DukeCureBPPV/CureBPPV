@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-operators */
 import RotationMatrix from './rotation-matrix';
-
+import Vector3D from './vector3D';
 
 /**
  * Quaternion is a mathematical way for represnting orientations and rotations,
@@ -135,6 +135,15 @@ class Quaternion {
     const yaw = attitude;
 
     return { pitch, roll, yaw };
+  }
+
+  /**
+   * Returns the vector part of the Quaternion.
+   * @returns {Vector3D}
+   */
+  getVector() {
+    const { x, y, z } = this;
+    return new Vector3D(x, y, z);
   }
 
   toString() {
