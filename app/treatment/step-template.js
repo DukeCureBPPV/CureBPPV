@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, NativeModules, NativeEventEmitter } from 'react-native';
 import Svg, { G, Circle, Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
+import Sound from 'react-native-sound';
 import Quaternion from './quaternion';
 import Vector3D from './vector3D';
 
@@ -34,8 +35,10 @@ class StepTemplate extends React.Component {
       finalRotation: new Quaternion(1, 0, 0, 0),
       vector: new Vector3D(0, 0, 100),
       angle: 0,
+      lastTenSeconds: false,
     };
     this.emitter = null;
+    this.tenSecondsSound = null;
   }
 
   componentDidMount() {
@@ -62,6 +65,10 @@ class StepTemplate extends React.Component {
         if (this.state.timestamp !== null
           && distanceToTarget < this.props.allowedDistance) {
           progress += (timestamp - this.state.timestamp) / this.props.totalTime;
+          if ((1 - progress) * this.props.totalTime < 10 && !this.state.lastTenSeconds) {
+            this.setState({ lastTenSeconds: true });
+            this.tenSecondsSound.play();
+          }
         }
         if (progress > 1) {
           this.navigate(this.props.nextPageName);
@@ -81,6 +88,7 @@ class StepTemplate extends React.Component {
       },
     );
     DeviceMotion.startUpdates();
+    this.tenSecondsSound = new Sound('ten_seconds.mp3', Sound.MAIN_BUNDLE);
   }
 
   navigate(targetRoute) {
