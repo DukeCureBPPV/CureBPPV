@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, NativeModules, NativeEventEmitter } from 'react-native';
-import Svg, { Polygon } from 'react-native-svg';
+import Svg, { G, Circle, Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
 import Sound from 'react-native-sound';
 import Quaternion from './quaternion';
+import Vector3D from './vector3D';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,32 +12,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  description: {
+    padding: 20,
+    paddingTop: 40,
+    paddingBottom: 0,
+    fontSize: 18,
+  },
 });
 
-const rotationStyle = ({ rotateX, rotateY, rotateZ }) => ({
-  width: 100,
-  height: 100,
-  backgroundColor: '#eee',
-  shadowOffset: { height: 1, width: 1 },
-  shadowOpacity: 0.2,
-  transform: [
-    { perspective: 1000 },
-    { rotateY: `${rotateY}rad` },
-    { rotateZ: `${rotateZ}rad` },
-    { rotateX: `${rotateX}rad` },
-  ],
-});
+const AREA_RADIUS = 130;
 
 class StepTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rotateX: 0,
-      rotateY: 0,
-      rotateZ: 0,
+      x: 0,
+      y: 0,
+      z: 0,
       distanceToTarget: 0,
       progress: 0,
       timestamp: null,
+      finalRotation: new Quaternion(1, 0, 0, 0),
+      vector: new Vector3D(0, 0, 100),
+      angle: 0,
       lastTenSeconds: false,
     };
     this.emitter = null;
@@ -49,17 +47,19 @@ class StepTemplate extends React.Component {
     this.emitter.addListener(
       'Rotation',
       ({ w, x, y, z, timestamp }) => {
+        // calculate finalQuaternion, the rotation to be applied to the view.
         const q = new Quaternion(w, x, y, z);
         const q0 = this.props.targetQuaternion;
         const T = q.toRotationMatrix();
         const T0 = q0.toRotationMatrix();
-        const { pitch, roll, yaw } = (T.T().times(T0).times(T))
+        const finalQuaternion = (T.T().times(T0).times(T))
           .toQuaternion()
-          .times(q.inv())
-          .toEulerianAngle();
-        const rotateX = -pitch;
-        const rotateY = roll;
-        const rotateZ = -yaw;
+          .times(q.inv());
+
+        // apply the rotation to 3D vectors and get (x, y, rotate) for the SVG 
+        const vector = new Vector3D(0, 0, -AREA_RADIUS).rotate(finalQuaternion);
+        const angle = new Vector3D(1, 0, 0).rotate(finalQuaternion).getAngle2D();
+
         const distanceToTarget = q.distTo(q0);
         let progress = this.state.progress;
         if (this.state.timestamp !== null
@@ -73,8 +73,17 @@ class StepTemplate extends React.Component {
         if (progress > 1) {
           this.navigate(this.props.nextPageName);
         }
+
         this.setState({
-          timestamp, progress, rotateX, rotateY, rotateZ, distanceToTarget,
+          x: vector.x,
+          y: vector.y,
+          z: vector.z,
+          angle,
+          timestamp,
+          progress,
+          distanceToTarget,
+          finalQuaternion,
+          vector,
         });
       },
     );
@@ -90,18 +99,35 @@ class StepTemplate extends React.Component {
 
   render() {
     const { stepNumberText } = this.props;
-    const { rotateX, rotateY, rotateZ, distanceToTarget } = this.state;
+    const { x, y, z, angle, distanceToTarget } = this.state;
+
+    let transX = x;
+    let transY = y;
+    if (z > 0) {
+      const factor = AREA_RADIUS / Math.sqrt((x * x) + (y * y));
+      transX = x * factor;
+      transY = y * factor;
+    }
+
     return (
       <View style={styles.container}>
-        <Text>
-          Move the phone and your head together
-          to make the arrow point up.
+        <Text style={styles.description}>
+          Keep your nose pointing to the black nose.
+          Rotate head and phone together so that your nose move towards the large hollow nose.
         </Text>
-        <View style={rotationStyle({ rotateX, rotateY, rotateZ })}>
-          <Svg width="100" height="100">
-            <Polygon points="50,5 55,20 45,20" fill="#888" />
-          </Svg>
-        </View>
+        <Svg width="320" height="320">
+          <Circle cx="160" cy="160" r={AREA_RADIUS} fill="#fff" stroke="#aaa" />
+          <G scale="1.5" x={160 + transX} y={160 - transY} rotate={(-angle * 180) / Math.PI}>
+            <Circle cx="0" cy="0" r="10" fill="none" stroke="#666" strokeWidth="2" />
+            <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="none" stroke="#666" strokeWidth="2" />
+            <Circle cx="0" cy="0" r="10" fill="#fff" stroke="none" />
+            <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="#fff" stroke="none" />
+          </G>
+          <G scale="1.2" x="160" y="160" >
+            <Circle cx="0" cy="0" r="10" fill="#000" stroke="none" />
+            <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="#000" stroke="none" />
+          </G>
+        </Svg>
         <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
         <ProgressBar width={200} height={30} progress={this.state.progress} />
         <Button

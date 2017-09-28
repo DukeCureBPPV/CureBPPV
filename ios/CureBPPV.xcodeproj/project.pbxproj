@@ -538,6 +538,7 @@
 			children = (
 				259D8607087E473C8585279D /* libRCTVideo.a */,
 				7AA796157B6448188239A9B3 /* libRNSVG.a */,
+				89BE89510C794630827F2679 /* libRNSound.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
