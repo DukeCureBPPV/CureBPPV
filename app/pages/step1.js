@@ -1,6 +1,6 @@
 import React from 'react';
 import StepTemplate from './step-template';
-import Quaternion from './quaternion';
+import Quaternion from '../math/quaternion';
 
 const TreatmentStepOne = ({ navigation }) => (
   <StepTemplate
@@ -8,7 +8,7 @@ const TreatmentStepOne = ({ navigation }) => (
     allowedDistance={0.04}
     totalTime={20}
     targetQuaternion={new Quaternion(0.671, -0.201, -0.684, -0.201)}
-    nextPageName={'TreatmentStepTwo'}
+    nextPageName={'Step2'}
     stepNumberText={'step 1 / 3'}
   />
 );

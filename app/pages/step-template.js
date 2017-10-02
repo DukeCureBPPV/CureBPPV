@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Button, StyleSheet, NativeModules, NativeEventEmitter } from 'react-native';
 import Svg, { G, Circle, Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
 import Sound from 'react-native-sound';
-import Quaternion from './quaternion';
-import Vector3D from './vector3D';
+import Quaternion from '../math/quaternion';
+import Vector3D from '../math/vector3D';
+import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -94,7 +96,7 @@ class StepTemplate extends React.Component {
   navigate(targetRoute) {
     NativeModules.DeviceMotion.stopUpdates();
     this.emitter.removeAllListeners('Rotation');
-    this.props.navigation.navigate(targetRoute);
+    this.props.goTo(targetRoute);
   }
 
   render() {
@@ -140,4 +142,12 @@ class StepTemplate extends React.Component {
   }
 }
 
-export default StepTemplate;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  goTo: (destination) => {
+    dispatch(navActions.goTo(destination));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StepTemplate);

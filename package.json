@@ -9,13 +9,16 @@
     "android": "npm install; react-native link; react-native run-android"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.1",
     "react-native-progress": "^3.4.0",
     "react-native-sound": "^0.10.4",
     "react-native-svg": "^5.4.1",
     "react-native-video": "^2.0.0",
-    "react-navigation": "^1.0.0-beta.11"
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-jest": "21.0.0",

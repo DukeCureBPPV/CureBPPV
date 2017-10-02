@@ -1,32 +1,12 @@
-import { StackNavigator } from 'react-navigation';
-import VideoPage from './video-page';
-import TreatmentStepOne from './treatment/treatment-step-one';
-import TreatmentStepTwo from './treatment/treatment-step-two';
-import TreatmentStepThree from './treatment/treatment-step-three';
-import TreatmentEndPage from './treatment/treatment-end-page';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import AppNavigator from './navigation/app-navigator';
 
-const App = StackNavigator({
-  Home: {
-    screen: VideoPage,
-  },
-  TreatmentStepOne: {
-    screen: TreatmentStepOne,
-  },
-  TreatmentStepTwo: {
-    screen: TreatmentStepTwo,
-  },
-  TreatmentStepThree: {
-    screen: TreatmentStepThree,
-  },
-  TreatmentEnd: {
-    screen: TreatmentEndPage,
-  },
-}, {
-  headerMode: 'none',
-  initialRouteName: 'Home',
-  navigationOptions: {
-    gesturesEnabled: false,
-  },
-});
+const App = () => (
+  <Provider store={store}>
+    <AppNavigator />
+  </Provider>
+);
 
 export default App;
