@@ -49,9 +49,18 @@ class StepTemplate extends React.Component {
     this.emitter.addListener(
       'Rotation',
       ({ w, x, y, z, timestamp }) => {
+        const { initQuaternion, treatmentSide, rotationLeft, rotationRight } = this.props;
+        // find target quaternion
+        let targetQuaternion = initQuaternion;
+        if (treatmentSide === 'left') {
+          targetQuaternion = rotationLeft.times(targetQuaternion);
+        } else {
+          targetQuaternion = rotationRight.times(targetQuaternion);
+        }
+
         // calculate finalQuaternion, the rotation to be applied to the view.
         const q = new Quaternion(w, x, y, z);
-        const q0 = this.props.targetQuaternion;
+        const q0 = targetQuaternion;
         const T = q.toRotationMatrix();
         const T0 = q0.toRotationMatrix();
         const finalQuaternion = (T.T().times(T0).times(T))
@@ -142,7 +151,10 @@ class StepTemplate extends React.Component {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  initQuaternion: state.app.get('initQuaternion'),
+  treatmentSide: state.app.get('treatmentSide'),
+});
 
 const mapDispatchToProps = dispatch => ({
   goTo: (destination) => {

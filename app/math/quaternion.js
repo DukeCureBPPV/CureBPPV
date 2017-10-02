@@ -146,6 +146,11 @@ class Quaternion {
     return new Vector3D(x, y, z);
   }
 
+  copy() {
+    const { w, x, y, z } = this;
+    return new Quaternion(w, x, y, z);
+  }
+
   toString() {
     const { w, x, y, z } = this;
     const n = num => (

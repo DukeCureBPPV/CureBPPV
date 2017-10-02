@@ -37,7 +37,7 @@ const VideoPage = ({ setTreatmentSide, goTo }) => (
         color="#2c4c91"
         onPress={() => {
           setTreatmentSide('left');
-          goTo('Step1');
+          goTo('Prepare');
         }}
       />
       <Button
@@ -45,7 +45,7 @@ const VideoPage = ({ setTreatmentSide, goTo }) => (
         color="#2c4c91"
         onPress={() => {
           setTreatmentSide('right');
-          goTo('Step1');
+          goTo('Prepare');
         }}
       />
     </View>

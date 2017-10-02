@@ -2,6 +2,7 @@ import React from 'react';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import Home from '../pages/home';
+import Prepare from '../pages/prepare';
 import Step1 from '../pages/step1';
 import Step2 from '../pages/step2';
 import Step3 from '../pages/step3';
@@ -10,6 +11,7 @@ import End from '../pages/end';
 export const Navigator = StackNavigator(
   {
     Home: { screen: Home },
+    Prepare: { screen: Prepare },
     Step1: { screen: Step1 },
     Step2: { screen: Step2 },
     Step3: { screen: Step3 },
