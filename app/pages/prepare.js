@@ -6,19 +6,23 @@ import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 150,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   description: {
-    padding: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
 });
 
 const Prepare = ({ markInitQuaternion, goTo }) => (
   <View style={styles.container}>
     <Text style={styles.description}>
-      Sit up straight on a bed and make sure that you can lie down.
+      Sit up straight on a bed and put a pillow on the bed,
+      so that when you lie down your shoulder will fall onto the pillow.
     </Text>
     <Text style={styles.description}>
       Press the button below when you are ready.
