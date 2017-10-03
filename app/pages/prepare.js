@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
 const Prepare = ({ markInitQuaternion, goTo }) => (
   <View style={styles.container}>
     <Text style={styles.description}>
-      Sit up straight on a bed and make sure that when you lie back down,
-      your head is positioned outside of the bed.
+      Sit up straight on a bed and make sure that you can lie down.
     </Text>
     <Text style={styles.description}>
       Press the button below when you are ready.

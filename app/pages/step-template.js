@@ -48,22 +48,25 @@ class StepTemplate extends React.Component {
   calculateMetrics() {
     const { quaternion, initQuaternion,
       treatmentSide, rotationLeft, rotationRight } = this.props;
-    // find target quaternion
-    let targetQuaternion = initQuaternion;
-    if (treatmentSide === 'left') {
-      targetQuaternion = rotationLeft.times(targetQuaternion);
-    } else {
-      targetQuaternion = rotationRight.times(targetQuaternion);
-    }
+    // find target quaternion q0
+    const qi = initQuaternion;
+    const qr = treatmentSide === 'left' ? rotationLeft : rotationRight;
+    const TQi = qi.toRotationMatrix();
+    const qrBase = TQi.times(qr.toRotationMatrix()).times(TQi.T()).toQuaternion();
+    const q0 = qrBase.times(qi);
 
     // calculate finalQuaternion, the rotation to be applied to the view.
     const q = quaternion;
-    const q0 = targetQuaternion;
     const T = q.toRotationMatrix();
     const T0 = q0.toRotationMatrix();
     const finalQuaternion = (T.T().times(T0).times(T))
       .toQuaternion()
       .times(q.inv());
+
+    // calculate required rotation for setting the parameters right
+    const qrBaseRequired = q.times(qi.inv());
+    const qrRequired = TQi.inv().times(qrBaseRequired.toRotationMatrix()).times(TQi).toQuaternion();
+    const rotationToTarget = qrRequired;
 
     const distanceToTarget = q.distTo(q0);
 
@@ -80,13 +83,14 @@ class StepTemplate extends React.Component {
     }
 
     return {
-      transX, transY, rotateAngle, distanceToTarget,
+      transX, transY, rotateAngle, distanceToTarget, rotationToTarget,
     };
   }
 
   render() {
     const { stepNumberText, timestamp, goTo, nextPageName } = this.props;
-    const { transX, transY, rotateAngle, distanceToTarget } = this.calculateMetrics();
+    const { transX, transY, rotateAngle, distanceToTarget,
+      rotationToTarget } = this.calculateMetrics();
     const progress = this.getUpdatedProgress(distanceToTarget);
 
     if (this.progress <= 0.5 && progress > 0.5) {
@@ -118,6 +122,7 @@ class StepTemplate extends React.Component {
           </G>
         </Svg>
         <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
+        <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text>
         <ProgressBar width={200} height={30} progress={progress} />
         <Button
           title="Go Back Home"

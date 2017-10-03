@@ -7,8 +7,8 @@ const TreatmentStepOne = ({ navigation }) => (
     navigation={navigation}
     allowedDistance={0.04}
     totalTime={20}
-    rotationLeft={new Quaternion(0.361, 0.072, -0.031, -0.929)}
-    rotationRight={new Quaternion(-0.361, 0.072, 0.031, -0.929)}
+    rotationLeft={new Quaternion(0.730, 0.514, -0.166, -0.419)}
+    rotationRight={new Quaternion(0.677, 0.639, 0.335, 0.149)}
     nextPageName={'Step3'}
     stepNumberText={'step 2 / 3'}
     noticeSoundFile={'ten_seconds.mp3'}
