@@ -4,7 +4,12 @@ export const setTreatmentSide = treatmentSide => ({
   type: SET_TREATMENT_SIDE, treatmentSide,
 });
 
-export const SET_INIT_QUATERNION = 'app/set-init-quaternion';
-export const setInitQuaternion = quaternion => ({
-  type: SET_INIT_QUATERNION, quaternion,
+export const MARK_INIT_QUATERNION = 'app/mark-init-quaternion';
+export const markInitQuaternion = () => ({
+  type: MARK_INIT_QUATERNION,
+});
+
+export const SET_QUATERNION = 'app/set-quaternion';
+export const setQuaternion = (quaternion, timestamp) => ({
+  type: SET_QUATERNION, quaternion, timestamp,
 });

@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Button, StyleSheet, NativeModules, NativeEventEmitter } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import Svg, { G, Circle, Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
 import Sound from 'react-native-sound';
-import Quaternion from '../math/quaternion';
 import Vector3D from '../math/vector3D';
 import * as navActions from '../navigation/actions';
 
@@ -27,90 +26,50 @@ const AREA_RADIUS = 130;
 class StepTemplate extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      x: 0,
-      y: 0,
-      z: 0,
-      distanceToTarget: 0,
-      progress: 0,
-      timestamp: null,
-      finalRotation: new Quaternion(1, 0, 0, 0),
-      vector: new Vector3D(0, 0, 100),
-      angle: 0,
-      lastTenSeconds: false,
-    };
-    this.emitter = null;
-    this.tenSecondsSound = null;
+    this.progress = 0;
+    this.timestamp = null;
   }
 
-  componentDidMount() {
-    const { DeviceMotion } = NativeModules;
-    this.emitter = new NativeEventEmitter(DeviceMotion);
-    this.emitter.addListener(
-      'Rotation',
-      ({ w, x, y, z, timestamp }) => {
-        const { initQuaternion, treatmentSide, rotationLeft, rotationRight } = this.props;
-        // find target quaternion
-        let targetQuaternion = initQuaternion;
-        if (treatmentSide === 'left') {
-          targetQuaternion = rotationLeft.times(targetQuaternion);
-        } else {
-          targetQuaternion = rotationRight.times(targetQuaternion);
-        }
-
-        // calculate finalQuaternion, the rotation to be applied to the view.
-        const q = new Quaternion(w, x, y, z);
-        const q0 = targetQuaternion;
-        const T = q.toRotationMatrix();
-        const T0 = q0.toRotationMatrix();
-        const finalQuaternion = (T.T().times(T0).times(T))
-          .toQuaternion()
-          .times(q.inv());
-
-        // apply the rotation to 3D vectors and get (x, y, rotate) for the SVG 
-        const vector = new Vector3D(0, 0, -AREA_RADIUS).rotate(finalQuaternion);
-        const angle = new Vector3D(1, 0, 0).rotate(finalQuaternion).getAngle2D();
-
-        const distanceToTarget = q.distTo(q0);
-        let progress = this.state.progress;
-        if (this.state.timestamp !== null
-          && distanceToTarget < this.props.allowedDistance) {
-          progress += (timestamp - this.state.timestamp) / this.props.totalTime;
-          if ((1 - progress) * this.props.totalTime < 10 && !this.state.lastTenSeconds) {
-            this.setState({ lastTenSeconds: true });
-            this.tenSecondsSound.play();
-          }
-        }
-        if (progress > 1) {
-          this.navigate(this.props.nextPageName);
-        }
-
-        this.setState({
-          x: vector.x,
-          y: vector.y,
-          z: vector.z,
-          angle,
-          timestamp,
-          progress,
-          distanceToTarget,
-          finalQuaternion,
-          vector,
-        });
-      },
-    );
-    DeviceMotion.startUpdates();
-    this.tenSecondsSound = new Sound('ten_seconds.mp3', Sound.MAIN_BUNDLE);
+  getUpdatedProgress(distanceToTarget) {
+    const { timestamp, allowedDistance, totalTime } = this.props;
+    let progress = this.progress;
+    if (this.timestamp && distanceToTarget < allowedDistance) {
+      progress += (timestamp - this.timestamp) / totalTime;
+    }
+    return progress;
   }
 
-  navigate(targetRoute) {
-    NativeModules.DeviceMotion.stopUpdates();
-    this.emitter.removeAllListeners('Rotation');
-    this.props.goTo(targetRoute);
+  playNoticeSound() {
+    const { noticeSoundFile } = this.props;
+    const sound = new Sound(noticeSoundFile, Sound.MAIN_BUNDLE);
+    sound.play();
   }
 
-  render() {
-    const { stepNumberText } = this.props;
-    const { x, y, z, angle, distanceToTarget } = this.state;
+  calculateMetrics() {
+    const { quaternion, initQuaternion,
+      treatmentSide, rotationLeft, rotationRight } = this.props;
+    // find target quaternion
+    let targetQuaternion = initQuaternion;
+    if (treatmentSide === 'left') {
+      targetQuaternion = rotationLeft.times(targetQuaternion);
+    } else {
+      targetQuaternion = rotationRight.times(targetQuaternion);
+    }
+
+    // calculate finalQuaternion, the rotation to be applied to the view.
+    const q = quaternion;
+    const q0 = targetQuaternion;
+    const T = q.toRotationMatrix();
+    const T0 = q0.toRotationMatrix();
+    const finalQuaternion = (T.T().times(T0).times(T))
+      .toQuaternion()
+      .times(q.inv());
+
+    const distanceToTarget = q.distTo(q0);
+
+    // apply the rotation to 3D vectors and get (x, y, rotate) for the SVG 
+    const { x, y, z } = new Vector3D(0, 0, -AREA_RADIUS).rotate(finalQuaternion);
+    const rotateAngle = new Vector3D(1, 0, 0).rotate(finalQuaternion).getAngle2D();
 
     let transX = x;
     let transY = y;
@@ -120,6 +79,25 @@ class StepTemplate extends React.Component {
       transY = y * factor;
     }
 
+    return {
+      transX, transY, rotateAngle, distanceToTarget,
+    };
+  }
+
+  render() {
+    const { stepNumberText, timestamp, goTo, nextPageName } = this.props;
+    const { transX, transY, rotateAngle, distanceToTarget } = this.calculateMetrics();
+    const progress = this.getUpdatedProgress(distanceToTarget);
+
+    if (this.progress <= 0.5 && progress > 0.5) {
+      this.playNoticeSound();
+    }
+    if (progress > 1) {
+      goTo(nextPageName);
+    }
+    this.progress = progress;
+    this.timestamp = timestamp;
+
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
@@ -128,7 +106,7 @@ class StepTemplate extends React.Component {
         </Text>
         <Svg width="320" height="320">
           <Circle cx="160" cy="160" r={AREA_RADIUS} fill="#fff" stroke="#aaa" />
-          <G scale="1.5" x={160 + transX} y={160 - transY} rotate={(-angle * 180) / Math.PI}>
+          <G scale="1.5" x={160 + transX} y={160 - transY} rotate={(-rotateAngle * 180) / Math.PI}>
             <Circle cx="0" cy="0" r="10" fill="none" stroke="#666" strokeWidth="2" />
             <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="none" stroke="#666" strokeWidth="2" />
             <Circle cx="0" cy="0" r="10" fill="#fff" stroke="none" />
@@ -140,10 +118,10 @@ class StepTemplate extends React.Component {
           </G>
         </Svg>
         <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
-        <ProgressBar width={200} height={30} progress={this.state.progress} />
+        <ProgressBar width={200} height={30} progress={progress} />
         <Button
           title="Go Back Home"
-          onPress={() => this.navigate('Home')}
+          onPress={() => goTo('Home')}
         />
         <Text>{stepNumberText}</Text>
       </View>
@@ -152,6 +130,8 @@ class StepTemplate extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  quaternion: state.app.get('quaternion'),
+  timestamp: state.app.get('timestamp'),
   initQuaternion: state.app.get('initQuaternion'),
   treatmentSide: state.app.get('treatmentSide'),
 });

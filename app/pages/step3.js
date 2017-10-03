@@ -11,6 +11,7 @@ const TreatmentStepOne = ({ navigation }) => (
     rotationRight={new Quaternion(-0.671, 0.201, 0.684, 0.201)}
     nextPageName={'End'}
     stepNumberText={'step 3 / 3'}
+    noticeSoundFile={'ten_seconds.mp3'}
   />
 );
 
