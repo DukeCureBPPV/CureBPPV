@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */; };
 		6E712C0A1F676755001D01A8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E712C091F676755001D01A8 /* CoreMotion.framework */; };
 		9DD1D56E1F6F6E3F00ABD793 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E712C051F676331001D01A8 /* DeviceMotion.m */; };
 /* End PBXBuildFile section */
@@ -26,8 +25,6 @@
 
 /* Begin PBXFileReference section */
 		6E4F6EE31F649F5300F5CD2B /* libRCTDeviceMotion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTDeviceMotion.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E4F6EE61F649F5300F5CD2B /* Accelerometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
-		6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
 		6E712BF61F67612A001D01A8 /* DeviceMotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceMotion.h; sourceTree = "<group>"; };
 		6E712C051F676331001D01A8 /* DeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMotion.m; sourceTree = "<group>"; };
 		6E712C091F676755001D01A8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -65,10 +62,8 @@
 		6E4F6EE51F649F5300F5CD2B /* RCTDeviceMotion */ = {
 			isa = PBXGroup;
 			children = (
-				6E4F6EE61F649F5300F5CD2B /* Accelerometer.h */,
 				6E712BF61F67612A001D01A8 /* DeviceMotion.h */,
 				6E712C051F676331001D01A8 /* DeviceMotion.m */,
-				6E4F6EE71F649F5300F5CD2B /* Accelerometer.m */,
 			);
 			path = RCTDeviceMotion;
 			sourceTree = "<group>";
@@ -139,7 +134,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E4F6EE81F649F5300F5CD2B /* Accelerometer.m in Sources */,
 				9DD1D56E1F6F6E3F00ABD793 /* DeviceMotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
