@@ -9,7 +9,6 @@ import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 40,
     paddingBottom: 0,
-    fontSize: 18,
   },
 });
 
@@ -47,7 +45,8 @@ class StepTemplate extends React.Component {
 
   calculateMetrics() {
     const { quaternion, initQuaternion,
-      treatmentSide, rotationLeft, rotationRight } = this.props;
+      treatmentSide, rotationLeft, rotationRight,
+      instructionsLeft, instructionsRight } = this.props;
     // find target quaternion q0
     const qi = initQuaternion;
     const qr = treatmentSide === 'left' ? rotationLeft : rotationRight;
@@ -65,7 +64,9 @@ class StepTemplate extends React.Component {
 
     // calculate required rotation for setting the parameters right
     const qrBaseRequired = q.times(qi.inv());
-    const qrRequired = TQi.inv().times(qrBaseRequired.toRotationMatrix()).times(TQi).toQuaternion();
+    const qrRequired = TQi.inv().times(
+      qrBaseRequired.toRotationMatrix(),
+    ).times(TQi).toQuaternion();
     const rotationToTarget = qrRequired;
 
     const distanceToTarget = q.distTo(q0);
@@ -82,15 +83,17 @@ class StepTemplate extends React.Component {
       transY = y * factor;
     }
 
+    const instructions = treatmentSide === 'left' ? instructionsLeft : instructionsRight;
+
     return {
-      transX, transY, rotateAngle, distanceToTarget, rotationToTarget,
+      transX, transY, rotateAngle, distanceToTarget, rotationToTarget, instructions,
     };
   }
 
   render() {
     const { stepNumberText, timestamp, goTo, nextPageName } = this.props;
     const { transX, transY, rotateAngle, distanceToTarget,
-      rotationToTarget } = this.calculateMetrics();
+      rotationToTarget, instructions } = this.calculateMetrics();
     const progress = this.getUpdatedProgress(distanceToTarget);
 
     if (this.progress <= 0.5 && progress > 0.5) {
@@ -105,8 +108,7 @@ class StepTemplate extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-          Keep your nose pointing to the black nose.
-          Rotate head and phone together so that your nose move towards the large hollow nose.
+          {instructions}
         </Text>
         <Svg width="320" height="320">
           <Circle cx="160" cy="160" r={AREA_RADIUS} fill="#fff" stroke="#aaa" />

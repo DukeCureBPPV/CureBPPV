@@ -1,11 +1,12 @@
 import { fromJS } from 'immutable';
 import * as actions from './actions';
+import Quaternion from './math/quaternion';
 
 const initialState = fromJS({
   treatmentSide: null,
-  quaternion: null,
-  timestamp: null,
-  initQuaternion: null,
+  quaternion: new Quaternion(1, 0, 0, 0),
+  timestamp: 0,
+  initQuaternion: new Quaternion(1, 0, 0, 0),
 });
 
 const reducer = (state = initialState, action) => {

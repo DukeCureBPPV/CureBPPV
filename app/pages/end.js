@@ -5,7 +5,7 @@ import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 180,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -19,12 +19,11 @@ const End = ({ goTo }) => (
     <Text style={styles.description}>
       Treatment Finished
     </Text>
-    <Text>
-      Please sit straight up.
+    <Text style={styles.description}>
+      Please sit up.
     </Text>
     <Button
       title="Go Back Home"
-      color="#2c4c91"
       onPress={() => goTo('Home')}
     />
   </View>
