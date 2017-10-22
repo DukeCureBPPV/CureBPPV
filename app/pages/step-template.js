@@ -39,8 +39,9 @@ class StepTemplate extends React.Component {
 
   playNoticeSound() {
     const { noticeSoundFile } = this.props;
-    const sound = new Sound(noticeSoundFile, Sound.MAIN_BUNDLE);
-    sound.play();
+    const sound = new Sound(noticeSoundFile, Sound.MAIN_BUNDLE, () => {
+      sound.play();
+    });
   }
 
   calculateMetrics() {
