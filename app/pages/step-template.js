@@ -91,12 +91,13 @@ class StepTemplate extends React.Component {
   }
 
   render() {
-    const { stepNumberText, timestamp, goTo, nextPageName } = this.props;
+    const { stepNumberText, timestamp, goTo, nextPageName, totalTime, noticeTime } = this.props;
     const { transX, transY, rotateAngle, distanceToTarget,
       rotationToTarget, instructions } = this.calculateMetrics();
     const progress = this.getUpdatedProgress(distanceToTarget);
+    const noticeProgress = noticeTime / totalTime;
 
-    if (this.progress <= 0.5 && progress > 0.5) {
+    if (this.progress <= noticeProgress && progress > noticeProgress) {
       this.playNoticeSound();
     }
     if (progress > 1) {

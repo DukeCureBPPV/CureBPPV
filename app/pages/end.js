@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const End = ({ goTo }) => (
+const End = ({ goTo, treatmentSide }) => (
   <View style={styles.container}>
     <Text style={styles.description}>
       Treatment Finished
     </Text>
     <Text style={styles.description}>
-      Please sit up.
+      {treatmentSide === 'left' ? 'Sit up on the right side' : 'Sit up on the left side'}
     </Text>
     <Button
       title="Go Back Home"
@@ -29,7 +29,9 @@ const End = ({ goTo }) => (
   </View>
 );
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  treatmentSide: state.app.get('treatmentSide'),
+});
 
 const mapDispatchToProps = dispatch => ({
   goTo: (destination) => {

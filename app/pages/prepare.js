@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
 const Prepare = ({ markInitQuaternion, goTo }) => (
   <View style={styles.container}>
     <Text style={styles.description}>
-      Sit up straight on a bed and put a pillow on the bed,
-      so that when you lie down your shoulder will fall onto the pillow.
+      Before you begin place a pillow behind you,
+       so that on lying back it will be under your shoulders.
     </Text>
     <Text style={styles.description}>
       Press the button below when you are ready.
