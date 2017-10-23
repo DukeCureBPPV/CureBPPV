@@ -95,7 +95,7 @@ class VideoPlayer extends React.Component {
 
   render() {
     return (
-      <View style={styles.videoBox}>
+      <View style={[styles.videoBox, this.props.style]}>
         <Video
           style={styles.video}
           source={this.props.source}
