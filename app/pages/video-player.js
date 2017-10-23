@@ -55,24 +55,6 @@ class VideoPlayer extends React.Component {
     this.player = null;
   }
 
-  handleLoad(meta) {
-    this.setState({
-      duration: meta.duration,
-    });
-  }
-
-  handleProgress(progress) {
-    this.setState({
-      progress: progress.currentTime / this.state.duration,
-    });
-  }
-
-  handleEnd() {
-    this.setState({
-      paused: true,
-    });
-  }
-
   handlePressPlayPauseButton() {
     if (this.state.progress >= 1) {
       this.player.seek(0);
@@ -101,9 +83,10 @@ class VideoPlayer extends React.Component {
           source={this.props.source}
           paused={this.state.paused}
           resizeMode="contain"
-          onLoad={meta => this.handleLoad(meta)}
-          onProgress={progress => this.handleProgress(progress)}
-          onEnd={() => this.handleEnd()}
+          onLoad={meta => this.setState({ duration: meta.duration })}
+          onProgress={progress =>
+            this.setState({ progress: progress.currentTime / this.state.duration })}
+          onEnd={() => this.setState({ paused: true })}
           ref={(ref) => { this.player = ref; }}
         />
 
