@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  videoPlayer: {
+    width: 300,
+    height: 230,
+    justifyContent: 'center',
+  },
 });
 
 const SURVEY_URL = 'https://redcap.duke.edu/redcap/surveys/?s=YDW8TRLKPJ';
@@ -47,6 +52,7 @@ const HomePage = ({ setTreatmentSide, goTo }) => (
 
     <VideoPlayer
       source={sampleVideo}
+      style={styles.videoPlayer}
     />
 
     <View style={styles.section}>
