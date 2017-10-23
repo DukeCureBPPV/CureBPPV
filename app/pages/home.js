@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Button, Text, View, Linking, Animated, TouchableWithoutFeedback } from 'react-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ProgressBar from 'react-native-progress/Bar';
+import Slider from 'react-native-slider';
 import sampleVideo from '../../assets/video/sample.mp4';
 import * as navActions from '../navigation/actions';
 import * as appActions from '../actions';
@@ -115,6 +115,10 @@ class VideoPage extends React.Component {
     this.player.seek(progress);
   }
 
+  handleSlideProgress(percentage) {
+    this.player.seek(percentage * this.state.duration);
+  }
+
   render() {
     return (
       <View style={styles.container} >
@@ -148,8 +152,10 @@ class VideoPage extends React.Component {
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={e => this.handlePressProgress(e)}>
               <View>
-                <ProgressBar
-                  progress={this.state.progress}
+                <Slider
+                  value={this.state.progress}
+                  onValueChange={value => this.handleSlideProgress(value)}
+                  thumbTouchSize={{ width: 50, height: 50 }}
                   color="#FFF"
                   unfilledColor="rgba(255,255,255,.5)"
                   borderColor="#FFF"
