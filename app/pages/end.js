@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import * as navActions from '../navigation/actions';
-import left from '../../assets/images/left_end.png';
-import right from '../../assets/images/right_end.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,18 +13,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
-  image: {
-    width: 150,
-    height: 250,
-  },
 });
 
 const End = ({ goTo, treatmentSide }) => (
   <View style={styles.container}>
-    <Image
-      source={treatmentSide === 'left' ? left : right}
-      style={styles.image}
-    />
     <Text style={styles.description}>
       Treatment Finished
     </Text>

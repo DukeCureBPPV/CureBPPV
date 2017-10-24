@@ -125,8 +125,8 @@ class StepTemplate extends React.Component {
             <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="#000" stroke="none" />
           </G>
         </Svg>
-        <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
-        <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text>
+        {/* <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
+        <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text> */}
         <ProgressBar width={200} height={30} progress={progress} />
         <Button
           title="Go Back Home"
