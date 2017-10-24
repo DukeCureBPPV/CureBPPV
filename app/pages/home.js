@@ -62,14 +62,14 @@ const HomePage = ({ setTreatmentSide, goTo }) => (
           title="left"
           onPress={() => {
             setTreatmentSide('left');
-            goTo('Prepare');
+            goTo('Illustration');
           }}
         />
         <Button
           title="right"
           onPress={() => {
             setTreatmentSide('right');
-            goTo('Prepare');
+            goTo('Illustration');
           }}
         />
       </View>

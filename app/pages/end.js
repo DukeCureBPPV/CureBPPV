@@ -5,22 +5,23 @@ import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 180,
+    paddingTop: 80,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   description: {
-    padding: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
 });
 
-const End = ({ goTo }) => (
+const End = ({ goTo, treatmentSide }) => (
   <View style={styles.container}>
     <Text style={styles.description}>
       Treatment Finished
     </Text>
     <Text style={styles.description}>
-      Please sit up.
+      {treatmentSide === 'left' ? 'Sit up on the right side' : 'Sit up on the left side'}
     </Text>
     <Button
       title="Go Back Home"
@@ -29,7 +30,9 @@ const End = ({ goTo }) => (
   </View>
 );
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  treatmentSide: state.app.get('treatmentSide'),
+});
 
 const mapDispatchToProps = dispatch => ({
   goTo: (destination) => {

@@ -39,8 +39,9 @@ class StepTemplate extends React.Component {
 
   playNoticeSound() {
     const { noticeSoundFile } = this.props;
-    const sound = new Sound(noticeSoundFile, Sound.MAIN_BUNDLE);
-    sound.play();
+    const sound = new Sound(noticeSoundFile, Sound.MAIN_BUNDLE, () => {
+      sound.play();
+    });
   }
 
   calculateMetrics() {
@@ -91,12 +92,13 @@ class StepTemplate extends React.Component {
   }
 
   render() {
-    const { stepNumberText, timestamp, goTo, nextPageName } = this.props;
+    const { stepNumberText, timestamp, goTo, nextPageName, totalTime, noticeTime } = this.props;
     const { transX, transY, rotateAngle, distanceToTarget,
       rotationToTarget, instructions } = this.calculateMetrics();
     const progress = this.getUpdatedProgress(distanceToTarget);
+    const noticeProgress = noticeTime / totalTime;
 
-    if (this.progress <= 0.5 && progress > 0.5) {
+    if (this.progress <= noticeProgress && progress > noticeProgress) {
       this.playNoticeSound();
     }
     if (progress > 1) {
@@ -123,8 +125,8 @@ class StepTemplate extends React.Component {
             <Polygon points="0,-20 -8.66,-5 8.66,-5" fill="#000" stroke="none" />
           </G>
         </Svg>
-        <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
-        <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text>
+        {/* <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
+        <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text> */}
         <ProgressBar width={200} height={30} progress={progress} />
         <Button
           title="Go Back Home"
