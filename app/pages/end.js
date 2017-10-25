@@ -6,7 +6,7 @@ import * as navActions from '../navigation/actions';
 const styles = StyleSheet.create({
   container: {
     paddingTop: 80,
-    justIfyContent: 'space-around',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   description: {
