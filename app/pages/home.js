@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Button, Text, View, Linking, AsyncStorage } from 'react-native';
+import { StyleSheet, Button, Text, View, Linking, AsyncStorage, AppState } from 'react-native';
 import * as navActions from '../navigation/actions';
 import * as appActions from '../actions';
 import VideoPlayer from './video-player';
@@ -56,6 +56,11 @@ class HomePage extends Component {
         }
       })
       .catch();
+    AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState === 'inactive' || nextAppState === 'background') {
+        this.props.goTo('Home');
+      }
+    });
   }
 
   render() {
