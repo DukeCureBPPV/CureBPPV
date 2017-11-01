@@ -2,9 +2,9 @@ import React from 'react';
 import StepTemplate from './step-template';
 import Quaternion from '../math/quaternion';
 
-const INSTRUCTIONS_LEFT = 'Keep your nose pointing to the black nose. Rotate head and phone together so that your nose move towards the large hollow nose.\n\nTurn your head 90° to the right (do not raise it off of the pillow) and wait again for 30 seconds.';
+const INSTRUCTIONS_LEFT = 'Turn your head 90° to the right (do not raise it off of the pillow) and wait again for 30 seconds.';
 
-const INSTRUCTIONS_RIGHT = 'Keep your nose pointing to the black nose. Rotate head and phone together so that your nose move towards the large hollow nose.\n\nTurn your head 90° to the left (do not raise it off of the pillow) and wait again for 30 seconds.';
+const INSTRUCTIONS_RIGHT = 'Turn your head 90° to the left (do not raise it off of the pillow) and wait again for 30 seconds.';
 
 const Step2 = () => (
   <StepTemplate

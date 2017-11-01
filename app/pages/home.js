@@ -17,17 +17,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
-    paddingTop: 80,
+    paddingTop: 60,
     paddingBottom: 15,
   },
   description: {
     paddingLeft: 30,
     paddingRight: 30,
     textAlign: 'center',
+    fontSize: 18,
   },
   sideChoicesBox: {
+    paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -70,8 +72,7 @@ class HomePage extends Component {
         <View style={styles.section}>
           <Text style={styles.title}>Cure BPPV</Text>
           <Text style={styles.description}>
-            Once you are diagnosed with BPPV,
-            this app guides you with self-treatment.
+            Once you are diagnosed with BPPV, this app will be an educational tool to aid you in at-home treatment.
           </Text>
         </View>
 
@@ -81,17 +82,19 @@ class HomePage extends Component {
         />
 
         <View style={styles.section}>
-          <Text>Which side for treatment:</Text>
+          <Text style={styles.description}>
+            To begin, please select which ear is being treated:
+          </Text>
           <View style={styles.sideChoicesBox}>
             <Button
-              title="left"
+              title="Left"
               onPress={() => {
                 setTreatmentSide('left');
                 goTo('Illustration');
               }}
             />
             <Button
-              title="right"
+              title="Right"
               onPress={() => {
                 setTreatmentSide('right');
                 goTo('Illustration');

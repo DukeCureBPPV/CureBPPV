@@ -14,18 +14,22 @@ const styles = StyleSheet.create({
   description: {
     paddingTop: 20,
     paddingBottom: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
+    fontSize: 18,
   },
   image: {
     width: 350,
     height: 210,
-    marginBottom: 20,
+    marginTop: 30,
+    marginBottom: 50,
   },
 });
 
 const Illustration = ({ treatmentSide, goTo }) => (
   <View style={styles.container} >
     <Text style={styles.description}>
-      Here is an illustration of the manuever steps.{'\n'}Before you proceed, get familiar with them!{'\n'}
+      Here is an illustration of the manuever steps. Before you proceed, get familiar with them!
     </Text>
     <Image
       style={styles.image}

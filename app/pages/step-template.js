@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 40,
     paddingBottom: 0,
+    fontSize: 18,
   },
 });
 
@@ -132,7 +133,7 @@ class StepTemplate extends React.Component {
           title="Go Back Home"
           onPress={() => goTo('Home')}
         />
-        <Text>{stepNumberText}</Text>
+        <Text style={styles.description}>{stepNumberText}</Text>
       </View>
     );
   }

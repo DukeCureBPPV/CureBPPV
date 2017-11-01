@@ -10,19 +10,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingTop: 20,
+    paddingBottom: 15,
+  },
   description: {
-    paddingLeft: 40,
-    paddingRight: 40,
+    paddingLeft: 30,
+    paddingRight: 30,
     paddingTop: 20,
     paddingBottom: 20,
+    fontSize: 18,
   },
 });
 
 const Prepare = ({ markInitQuaternion, goTo }) => (
   <View style={styles.container}>
+    <Text style={styles.title}>
+      IMPORTANT
+    </Text>
     <Text style={styles.description}>
-      Before you begin place a pillow behind you,
-       so that on lying back it will be under your shoulders.
+      Before you begin place a pillow behind you, so that on lying back it will be under your shoulders. Your head should not be on the pillow.
+    </Text>
+    <Text style={styles.description}>
+      Hold the phone vertically.
     </Text>
     <Text style={styles.description}>
       Press the button below when you are ready.
