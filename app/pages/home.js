@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Button, Text, View, Linking } from 'react-native';
+import { StyleSheet, Button, Text, View, Linking, AsyncStorage, AppState } from 'react-native';
 import * as navActions from '../navigation/actions';
 import * as appActions from '../actions';
 import VideoPlayer from './video-player';
@@ -40,48 +40,81 @@ const styles = StyleSheet.create({
 
 const SURVEY_URL = 'https://redcap.duke.edu/redcap/surveys/?s=YDW8TRLKPJ';
 
-const HomePage = ({ setTreatmentSide, goTo }) => (
-  <View style={styles.container} >
-    <View style={styles.section}>
-      <Text style={styles.title}>Cure BPPV</Text>
-      <Text style={styles.description}>
-        Once you are diagnosed with BPPV,
-        this app guides you with self-treatment.
-      </Text>
-    </View>
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasSurvey: false,
+    };
+  }
 
-    <VideoPlayer
-      source={sampleVideo}
-      style={styles.videoPlayer}
-    />
+  componentDidMount() {
+    AsyncStorage.getItem('@CureBPPVf:finished')
+      .then((value) => {
+        if (value === 'true') {
+          this.setState({ hasSurvey: true });
+        }
+      })
+      .catch();
+    AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState === 'inactive' || nextAppState === 'background') {
+        this.props.goTo('Home');
+      }
+    });
+  }
 
-    <View style={styles.section}>
-      <Text>Which side for treatment:</Text>
-      <View style={styles.sideChoicesBox}>
-        <Button
-          title="left"
-          onPress={() => {
-            setTreatmentSide('left');
-            goTo('Illustration');
-          }}
+  render() {
+    const { setTreatmentSide, goTo } = this.props;
+    return (
+      <View style={styles.container} >
+        <View style={styles.section}>
+          <Text style={styles.title}>Cure BPPV</Text>
+          <Text style={styles.description}>
+            Once you are diagnosed with BPPV,
+            this app guides you with self-treatment.
+          </Text>
+        </View>
+
+        <VideoPlayer
+          source={sampleVideo}
+          style={styles.videoPlayer}
         />
-        <Button
-          title="right"
-          onPress={() => {
-            setTreatmentSide('right');
-            goTo('Illustration');
-          }}
-        />
+
+        <View style={styles.section}>
+          <Text>Which side for treatment:</Text>
+          <View style={styles.sideChoicesBox}>
+            <Button
+              title="left"
+              onPress={() => {
+                setTreatmentSide('left');
+                goTo('Illustration');
+              }}
+            />
+            <Button
+              title="right"
+              onPress={() => {
+                setTreatmentSide('right');
+                goTo('Illustration');
+              }}
+            />
+          </View>
+        </View>
+        <View style={styles.section}>
+          {
+            this.state.hasSurvey
+              ? (
+                <Button
+                  title="Survey"
+                  onPress={() => { Linking.openURL(SURVEY_URL); }}
+                />
+              )
+              : null
+          }
+        </View>
       </View>
-    </View>
-    <View style={styles.section}>
-      <Button
-        title="Survey"
-        onPress={() => { Linking.openURL(SURVEY_URL); }}
-      />
-    </View>
-  </View>
-);
+    );
+  }
+}
 
 const mapStateToProps = () => ({});
 

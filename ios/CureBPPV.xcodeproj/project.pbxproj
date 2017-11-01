@@ -1406,7 +1406,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example1.CureBPPV;
+				PRODUCT_BUNDLE_IDENTIFIER = something.CureBPPV;
 				PRODUCT_NAME = CureBPPV;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1434,7 +1434,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example1.CureBPPV;
+				PRODUCT_BUNDLE_IDENTIFIER = something.CureBPPV;
 				PRODUCT_NAME = CureBPPV;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
