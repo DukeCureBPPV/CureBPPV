@@ -18,7 +18,6 @@ const reducer = (state = initialState, action) => {
             NavigationActions.navigate({ routeName: action.destination }),
           ],
         }),
-        state,
       );
     default:
       return state;
