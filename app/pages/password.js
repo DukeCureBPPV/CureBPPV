@@ -23,6 +23,19 @@ const styles = StyleSheet.create({
 
 const PASSWORD = '123456';
 
+const showLoginErrorMessage = () => {
+  Alert.alert(
+    'Wrong password',
+    'Sorry your password is not correct. Please try again.',
+    [
+      {
+        text: 'OK',
+      },
+    ],
+    { cancelable: false },
+  );
+};
+
 class Password extends Component {
   constructor(props) {
     super(props);
@@ -37,19 +50,6 @@ class Password extends Component {
 
   loginSuccessfully() {
     this.props.goTo('Home');
-  }
-
-  showLoginErrorMessage() {
-    Alert.alert(
-      'Wrong password',
-      'Sorry your password is not correct. Please try again.',
-      [
-        {
-          text: 'OK',
-        },
-      ],
-      { cancelable: false },
-    )
   }
 
   render() {
@@ -70,7 +70,7 @@ class Password extends Component {
         <Button
           style={styles.section}
           title="Login"
-          onPress={() => { this.verifyLogin() ? this.loginSuccessfully() : this.showLoginErrorMessage() }}
+          onPress={() => { this.verifyLogin() ? this.loginSuccessfully() : showLoginErrorMessage() }}
         />
       </View>);
   }
