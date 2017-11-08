@@ -1,6 +1,7 @@
 import React from 'react';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
+import Password from '../pages/password';
 import Home from '../pages/home';
 import Illustration from '../pages/illustration';
 import Prepare from '../pages/prepare';
@@ -11,6 +12,7 @@ import End from '../pages/end';
 
 export const Navigator = StackNavigator(
   {
+    Password: { screen: Password },
     Home: { screen: Home },
     Illustration: { screen: Illustration },
     Prepare: { screen: Prepare },
@@ -20,7 +22,6 @@ export const Navigator = StackNavigator(
     End: { screen: End },
   }, {
     headerMode: 'none',
-    initialRouteName: 'Home',
     navigationOptions: {
       gesturesEnabled: false,
     },

@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { Navigator } from './app-navigator';
 import * as actions from './actions';
 
-const INIT_PATH = 'Home';
+const INIT_PATH = 'Password';
 
 const initialState = Navigator.router.getStateForAction(
   Navigator.router.getActionForPathAndParams(INIT_PATH),

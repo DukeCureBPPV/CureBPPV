@@ -16,7 +16,7 @@ describe('navigation reducer', () => {
   it('should return the initial state', () => {
     const received = reducer(undefined, {});
     const expected = Navigator.router.getStateForAction(
-      Navigator.router.getActionForPathAndParams('Home'),
+      Navigator.router.getActionForPathAndParams('Password'),
     );
     NavigationStateEquals(received, expected);
   });
