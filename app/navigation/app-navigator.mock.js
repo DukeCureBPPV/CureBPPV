@@ -2,6 +2,7 @@ import React from 'react';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
+const Password = () => <div>Password</div>;
 const Home = () => <div>Home</div>;
 const Illustration = () => <div>Illustration</div>;
 const Prepare = () => <div>Prepare</div>;
@@ -12,6 +13,7 @@ const End = () => <div>End</div>;
 
 export const Navigator = StackNavigator(
   {
+    Password: { screen: Password },
     Home: { screen: Home },
     Illustration: { screen: Illustration },
     Prepare: { screen: Prepare },
@@ -21,7 +23,6 @@ export const Navigator = StackNavigator(
     End: { screen: End },
   }, {
     headerMode: 'none',
-    initialRouteName: 'Home',
     navigationOptions: {
       gesturesEnabled: false,
     },
