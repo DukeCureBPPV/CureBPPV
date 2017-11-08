@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
+import { TextInput, View, Button, StyleSheet, Alert } from 'react-native';
 import * as navActions from '../navigation/actions';
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   section: {
     paddingTop: 50,
     paddingBottom: 50,
     alignItems: 'center',
+  },
+  textInput: {
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    borderWidth: 1,
+    height: 30,
+    width: 150,
+    borderColor: '#333',
   },
   largeText: {
     fontSize: 30,
@@ -55,22 +64,17 @@ class Password extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.section}>
-          Login
-        </Text>
         <TextInput
           placeholder="Password..."
-          placeholderTextColor="#3f80ea"
-          maxLength={30}
           onChangeText={text => this.setState({ enteredPassword: text })}
           secureTextEntry
           autoCapitalize="none"
-          style={styles.section}
+          style={styles.textInput}
         />
         <Button
           style={styles.section}
           title="Login"
-          onPress={() => { this.verifyLogin() ? this.loginSuccessfully() : showLoginErrorMessage() }}
+          onPress={() => (this.verifyLogin() ? this.loginSuccessfully() : showLoginErrorMessage())}
         />
       </View>);
   }
