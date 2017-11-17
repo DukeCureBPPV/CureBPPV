@@ -3,6 +3,7 @@ import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import Password from '../pages/password';
 import Home from '../pages/home';
+import Instructions from '../pages/instructions';
 import Illustration from '../pages/illustration';
 import Prepare from '../pages/prepare';
 import Step1 from '../pages/step1';
@@ -14,6 +15,7 @@ export const Navigator = StackNavigator(
   {
     Password: { screen: Password },
     Home: { screen: Home },
+    Instructions: { screen: Instructions },
     Illustration: { screen: Illustration },
     Prepare: { screen: Prepare },
     Step1: { screen: Step1 },
