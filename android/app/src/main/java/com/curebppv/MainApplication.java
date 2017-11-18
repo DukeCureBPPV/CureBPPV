@@ -35,6 +35,11 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactVideoPackage()
       );
     }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
+    }
   };
 
   @Override
