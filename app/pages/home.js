@@ -90,14 +90,14 @@ class HomePage extends Component {
               title="Left"
               onPress={() => {
                 setTreatmentSide('left');
-                goTo('Illustration');
+                goTo('Instructions');
               }}
             />
             <Button
               title="Right"
               onPress={() => {
                 setTreatmentSide('right');
-                goTo('Illustration');
+                goTo('Instructions');
               }}
             />
           </View>

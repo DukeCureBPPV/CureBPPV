@@ -34,7 +34,7 @@ const Prepare = ({ markInitQuaternion, goTo }) => (
       Before you begin place a pillow behind you, so that on lying back it will be under your shoulders. Your head should not be on the pillow.
     </Text>
     <Text style={styles.description}>
-      Hold the phone vertically.
+      Sit up straight and hold the phone vertically.
     </Text>
     <Text style={styles.description}>
       Press the button below when you are ready.
