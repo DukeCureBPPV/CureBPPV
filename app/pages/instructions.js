@@ -85,7 +85,7 @@ class Instructions extends React.Component {
           ],
         });
       }
-    }, 5000);
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -100,6 +100,8 @@ class Instructions extends React.Component {
           data={this.state.instructions}
           renderItem={({ item }) => <ListItem item={item} />}
           keyExtractor={item => item.index}
+          directionalLockEnabled
+          showHorizontalScrollIndicator={false}
         />
       </View>
     );
