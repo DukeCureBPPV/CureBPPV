@@ -4,6 +4,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import Svg, { G, Circle, Polygon } from 'react-native-svg';
 import ProgressBar from 'react-native-progress/Bar';
 import Sound from 'react-native-sound';
+import KeepAwake from 'react-native-keep-awake';
 import Vector3D from '../math/vector3D';
 import * as navActions from '../navigation/actions';
 
@@ -110,6 +111,7 @@ class StepTemplate extends React.Component {
 
     return (
       <View style={styles.container}>
+        <KeepAwake />
         <Text style={styles.description}>
           {instructions}
         </Text>
