@@ -21,7 +21,7 @@ public class DeviceMotionPackage implements ReactPackage {
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new Accelerometer(reactContext));
+        modules.add(new DeviceMotionModule(reactContext));
 
         return modules;
     }
