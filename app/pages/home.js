@@ -4,7 +4,7 @@ import { StyleSheet, Button, Text, View, Linking, AsyncStorage, AppState } from 
 import * as navActions from '../navigation/actions';
 import * as appActions from '../actions';
 import VideoPlayer from './video-player';
-import sampleVideo from '../../assets/video/sample.mp4';
+import sampleVideo from '../../assets/video/youtube.mp4';
 
 const styles = StyleSheet.create({
   container: {
