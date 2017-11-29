@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontSize: 18,
   },
+  buttonGapView: {
+    height: 10,
+  },
 });
 
 const Prepare = ({ markInitQuaternion, goTo }) => (
@@ -46,6 +49,7 @@ const Prepare = ({ markInitQuaternion, goTo }) => (
         goTo('Step1');
       }}
     />
+    <View style={styles.buttonGapView} />
     <Button
       title="Go Back Home"
       onPress={() => goTo('Home')}

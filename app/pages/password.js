@@ -18,9 +18,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     borderWidth: 1,
-    height: 30,
+    height: 40,
     width: 150,
     borderColor: '#333',
+    marginBottom: 15,
   },
   largeText: {
     fontSize: 30,

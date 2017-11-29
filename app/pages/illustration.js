@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 50,
   },
+  buttonGapView: {
+    height: 10,
+  },
 });
 
 const Illustration = ({ treatmentSide, goTo }) => (
@@ -39,6 +42,7 @@ const Illustration = ({ treatmentSide, goTo }) => (
       title="Next"
       onPress={() => goTo('Prepare')}
     />
+    <View style={styles.buttonGapView} />
     <Button
       title="Go Back Home"
       onPress={() => goTo('Home')}

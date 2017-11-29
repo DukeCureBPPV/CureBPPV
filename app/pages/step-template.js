@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     fontSize: 18,
   },
+  buttonGapView: {
+    height: 10,
+  },
 });
 
 const AREA_RADIUS = 130;
@@ -131,6 +134,7 @@ class StepTemplate extends React.Component {
         {/* <Text>distance to target: {distanceToTarget.toFixed(5)}</Text>
         <Text>rotation to target: {'\n'}{rotationToTarget.toString()}</Text> */}
         <ProgressBar width={200} height={30} progress={progress} />
+        <View style={styles.buttonGapView} />
         <Button
           title="Go Back Home"
           onPress={() => goTo('Home')}
