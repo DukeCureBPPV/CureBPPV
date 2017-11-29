@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 
 const styles = StyleSheet.create({
+  itemContainer: {
+    marginTop: 8,
+  },
   text: {
     fontSize: 18,
     paddingLeft: 30,
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 const ListItem = ({ item }) => (
-  <View>
+  <View style={styles.itemContainer}>
     {item.type === 'text' &&
       <Text style={styles.text}>{item.data}</Text>
     }

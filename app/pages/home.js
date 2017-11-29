@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
   sideChoicesBox: {
     paddingTop: 10,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+  },
+  buttonGapView: {
+    width: 50,
   },
   videoPlayer: {
     width: 300,
@@ -93,6 +96,7 @@ class HomePage extends Component {
                 goTo('Instructions');
               }}
             />
+            <View style={styles.buttonGapView} />
             <Button
               title="Right"
               onPress={() => {
