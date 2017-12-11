@@ -12,6 +12,10 @@ To run the app, follow the [React Native Getting Started Guide](https://facebook
 
 Use [React Native Debugger](https://github.com/jhen0409/react-native-debugger) for debugging. After installing the debugger, just open the debugger, and debug the app by "start remote debugging".
 
+**For Future Developers on the Project:**
+
+Please refer to the [BACKLOG](https://github.com/DukeCureBPPV/CureBPPV/blob/master/BACKLOG.txt) for what needs to be done. Corresponding GitHub issues have not been created yet.
+
 ## Deployment
 
 For how to deploy the app, refer to the "App Maintenance Documentation" section in [Wiki App Maintenance Document](https://github.com/DukeCureBPPV/CureBPPV/wiki/app-maintenance-document).
