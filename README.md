@@ -1,6 +1,6 @@
 ## CureBPPV App
 
-This is an app build by the CureBPPV team (Grayson Wise, Keping Wang, and Yilin Gao) in Duke Compsci 408 Delivering Software for Kristal Riska from Duke Medicine.
+This is an app build by the CureBPPV team (Grayson Wise, Keping Wang, and Yilin Gao) in Duke Compsci 408 Delivering Software for Kristal Riska from Duke Medicine, under the guidance of Professor Robert Duvall, Richard Lucic and Ajay Patel from Duke University Department of Computer Science.
 
 For the purpose of the app, refer to the [Wiki Executive Summary](https://coursework.cs.duke.edu/CompSci408_2017Fall/app_bppv/wikis/executive-summary).
 
