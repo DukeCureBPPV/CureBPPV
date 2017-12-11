@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList } from 'react-native';
 import * as navActions from '../navigation/actions';
 import ListItem from './list-item';
-import Screenshot from '../../assets/step-screenshot.png';
+import Screenshot from '../../assets/images/step-screenshot.png';
 
 const styles = StyleSheet.create({
   container: {

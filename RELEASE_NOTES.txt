@@ -1,0 +1,9 @@
+The current version (v1.0) of CureBPPV has the following functionality:
+
+1. Guide the user to move their phones and their body together, to perform the BPPV Epley Maneuver.
+2. Provide in-app video and image introductions to the manuever.
+3. Provide in-app text explanation of app usage.
+4. Provide visual and audio feedback during manuever.
+5. Offer post-manuever survey to the user.
+
+The current version of the app has been tested on iOS 10 on iPhone SE, iOS 11 on iPhone 6, and Android 8 on Google Pixel.

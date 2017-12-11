@@ -1,0 +1,20 @@
+Features to implement in the future
+
+1. Issue 29, replace all dummy information with correct info
+Specifically, information needs to be replaced include the video on the first page. The currento one is downloaded from YouTube.
+
+2. Issue 27, replace basic text with stylized text and buttons
+
+3. Issue 36, do more advanced styling work
+
+4. For the client, wording of maneuver directions needs more consideration. During user testing, we received a couple of comments that users cannot quickly understand the directions. For example, in step 2, the direction is "Turn your head 90° to the right/left and ...". Some users will misunderstand this as "turn your head to 90° right/left".
+
+5. One user mentioned that laying back over an elevated surface with a phone in hand can cause the user to be nervous about dropping their phone. This was not something that had come up in our discussions, and is something we need to consider in this situation.
+
+6. Another idea that we loved but couldn't quite get working in time was to alter the progress bar on each step of the treatment. One tester posed that we have the progress bar fill up the circle as time progresses, which would open up a lot more space on the rest of the page to include an image, or text explanation, of how to perform that specific step.
+
+7. The best form of our app would work with a virtual reality headset. One of the things we struggled with the most throughout development was creating a way to ensure users would actually move their head, and not just the phone. In a virtual reality app, this problem would go away, and the interface would be perfect for our needs.
+
+8. Issue 32, after the testing period, submit the app to iOS App Store.
+
+9. Issue 33, after the testing period, submit the app to Google Play.
