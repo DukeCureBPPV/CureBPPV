@@ -14,4 +14,4 @@ Use [React Native Debugger](https://github.com/jhen0409/react-native-debugger) f
 
 ## Deployment
 
-For how to deploy the app, refer to the "App Maintenance Documentation" section in [Wiki Tech Transfer Document](https://coursework.cs.duke.edu/CompSci408_2017Fall/app_bppv/wikis/tech-transfer-documentation).
+For how to deploy the app, refer to the "App Maintenance Documentation" section in [Wiki App Maintenance Document](https://coursework.cs.duke.edu/CompSci408_2017Fall/app_bppv/wikis/app-maintenance-document).
